@@ -5,8 +5,8 @@ type Query{
     getAllMovie: [MovieResponse]!
 }
 type Mutation{
-    addUser(userInput:UserInput!): User
-    updateUser(id:ID!, userInput:UserInput!): User
+    addUser(userInput:UserInput!): User!
+    updateUser(id:ID!, userInput:UserInput!): User!
     deleteUser(id:ID!): Boolean
 }
 type MovieResponse{
