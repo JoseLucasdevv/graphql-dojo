@@ -1,0 +1,35 @@
+type Query{
+    getUsers: [User!]!
+    getUserById(id:ID!): User
+    getMovieByName(userId:ID!,name:String!): [Movie]!
+    getAllMovie: [MovieResponse]!
+}
+type Mutation{
+    addUser(userInput:UserInput!): User
+    updateUser(id:ID!, userInput:UserInput!): User
+    deleteUser(id:ID!): Boolean
+}
+type MovieResponse{
+    userId:ID!
+    name:String!
+    releaseYear:Int!
+}
+
+type Movie {
+    name : String!
+    releaseYear : Int!
+}
+
+type User{
+    id: ID!
+    name: String!
+    email: String!
+    age: Int!
+    movies: [Movie!]!
+}
+
+input UserInput{
+    name: String!
+    email: String!
+    age: Int!
+}
