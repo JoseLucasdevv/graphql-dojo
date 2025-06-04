@@ -1,14 +1,26 @@
 type Query{
-    getUsers: [User!]!
+    getUsers(page:Int,size:Int):ContentPageable!
     getUserById(id:ID!): User
     getMovieByName(userId:ID!,name:String!): [Movie]!
-    getAllMovie: [MovieResponse]!
+    getAllMovies(page:Int,size:Int): [MovieResponse]!
 }
+
+type ContentPageable{
+    content:[User]!
+    hasNext:Boolean!
+    hasPrevious:Boolean!
+    actualPage:Int!
+    size:Int!
+    offSet:Int!
+    totalPage:Int!
+}
+
 type Mutation{
     addUser(userInput:UserInput!): User!
     updateUser(id:ID!, userInput:UserInput!): User!
     deleteUser(id:ID!): Boolean
 }
+
 type MovieResponse{
     userId:ID!
     name:String!
@@ -25,7 +37,7 @@ type User{
     name: String!
     email: String!
     age: Int!
-    movies: [Movie!]!
+    movies: [Movie]
 }
 
 input UserInput{
