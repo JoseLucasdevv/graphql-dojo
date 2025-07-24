@@ -1,11 +1,15 @@
 spring:
   security:
     oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:8080/realms/group42Labs"
+          jwk-set-uri: "http://localhost:8080/realms/group42Labs/protocol/openid-connect/certs"
       client:
         registration:
           auth0:
-            client-id: ${CLIENT_ID}
-            client-secret: ${CLIENT_SECRET}
+            client-id: d6RuGCnxgpl9Zymd8fqZv9PpghwNq7u3
+            client-secret: IQuGwngaQjY-plL4Gj8cZRHbKOSlNz3vgenQOFwwtjXd5qn7VWvEmsXmmYH77n_v
             scope: openid, profile, email
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             authorization-grant-type: authorization_code
@@ -36,5 +40,6 @@ spring:
   graphql:
     graphiql:
       enabled: true
-
+server:
+  port: 8084
 

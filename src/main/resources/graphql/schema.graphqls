@@ -1,12 +1,11 @@
 type Query{
-    getUsers(page:Int,size:Int):ContentPageable!
+    getUsers(page:Int,size:Int):UserPageable!
     getUserById(id:ID!): User
     getMovieByName(userId:ID!,name:String!): [Movie]!
     getAllMovies(page:Int,size:Int): [MovieResponse]!
 }
 
-type ContentPageable{
-    content:[User]!
+interface Pageable {
     hasNext:Boolean!
     hasPrevious:Boolean!
     actualPage:Int!
@@ -14,6 +13,27 @@ type ContentPageable{
     offSet:Int!
     totalPage:Int!
 }
+
+type UserPageable implements Pageable{
+    hasNext:Boolean!
+    hasPrevious:Boolean!
+    actualPage:Int!
+    size:Int!
+    offSet:Int!
+    totalPage:Int!
+    content:[User]!
+}
+
+type MoviePageable implements Pageable {
+    hasNext:Boolean!
+    hasPrevious:Boolean!
+    actualPage:Int!
+    size:Int!
+    offSet:Int!
+    totalPage:Int!
+    content:[Movie]!
+}
+
 
 type Mutation{
     addUser(userInput:UserInput!): User!
